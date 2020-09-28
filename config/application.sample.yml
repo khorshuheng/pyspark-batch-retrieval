@@ -1,0 +1,26 @@
+entity:
+  format: "csv"
+  path: "file://<absolute path>/customer.csv"
+  options:
+    inferSchema: "true"
+    header: "true"
+
+tables:
+  - format: "csv"
+    path: "file://<absolute path>/transactions.csv"
+    view: "transactions"
+    options:
+      inferSchema: "true"
+      header: "true"
+
+queries:
+  - table: "transactions"
+    features:
+      - "daily_transactions"
+    join:
+      - "customer_id"
+    max_age: "1 day"
+
+output:
+  format: "csv"
+  path: "gs://<GCS bucket>/batch-retrieval-example"
