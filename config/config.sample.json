@@ -1,0 +1,34 @@
+{
+  "entity": {
+    "format": "csv",
+    "path": "file://<absolute path>/customer_driver_pairs.csv",
+    "options": {"inferSchema": "true", "header": "true"}
+  },
+  "tables": [
+    {
+      "format": "csv",
+      "path": "file://<absolute path>/bookings.csv",
+      "view": "bookings",
+      "options": {"inferSchema": "true", "header": "true"}
+    },
+    {
+      "format": "csv",
+      "path": "file://<absolute path>/transactions.csv",
+      "view": "transactions",
+      "options": {"inferSchema": "true", "header": "true"}
+    },
+  ],
+  "queries": [
+    {
+      "table": "transactions",
+      "features": ["daily_transactions"],
+      "join": ["customer_id"],
+      "max_age": "1 day"
+    },
+    {
+      "table": "bookings",
+      "features": ["completed_bookings"],
+      "join": ["driver_id"]
+    },
+  ],
+}

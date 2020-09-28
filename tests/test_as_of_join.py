@@ -12,8 +12,7 @@ from pyspark.sql.types import (
     FloatType,
 )
 
-from feast_spark.job import batch_retrieval_dataframe
-from feast_spark.transformation.batch_retrieval import as_of_join, query
+from feast_spark.job import batch_retrieval_dataframe, as_of_join, query
 
 
 @pytest.fixture
